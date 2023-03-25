@@ -4,7 +4,7 @@ import { Wrapper } from 'components/wrapper';
 import GlobalStyle from 'styles/globalStyles';
 import { AppRouter } from 'router/AppRouter';
 
-function App(): JSX.Element {
+const App: React.FC = () => {
   const queryClient = new QueryClient();
   return (
     <StyledThemeProvider>
@@ -16,6 +16,6 @@ function App(): JSX.Element {
       </QueryClientProvider>
     </StyledThemeProvider>
   );
-}
+};
 
 export default App;
