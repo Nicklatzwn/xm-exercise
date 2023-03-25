@@ -5,7 +5,6 @@ export const Card = styled.div`
   background-color: ${({ theme }) => theme.colors.CardBg};
   color: ${({ theme }) => theme.colors.textColor};
   border-radius: 8px;
-  padding: 0 10px;
   box-shadow: 0 0 0 2px rgba(51, 156, 253, 0.2);
   display: flex;
   flex-direction: column;
