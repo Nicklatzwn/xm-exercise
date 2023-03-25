@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { BeatLoader } from 'react-spinners';
 import { Form } from './styled';
 
@@ -18,6 +19,8 @@ const LoginForm: React.FC<{ onSubmit: (data: LoginFormInputs) => void; isLoading
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormInputs>();
+  const [showPassword, setShowPassword] = useState(false);
+  const handleShowPasswordToggle = () => setShowPassword(!showPassword);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -38,10 +41,13 @@ const LoginForm: React.FC<{ onSubmit: (data: LoginFormInputs) => void; isLoading
         <input
           className="form-control"
           autoComplete="on"
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           id="password"
           {...register('password', { required: true })}
         />
+        <div className="show__password" onClick={handleShowPasswordToggle}>
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </div>
         {errors.password && <p className="form-control-error">Password is required</p>}
       </div>
       <div className="form-check">

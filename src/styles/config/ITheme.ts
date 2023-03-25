@@ -1,6 +1,7 @@
 interface ThemeColorCommon {
   transparent: string;
   white: string;
+  black: string;
   logout: string;
   logoutHover: string;
   login: string;

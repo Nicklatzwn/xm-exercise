@@ -17,8 +17,7 @@ httpApi.interceptors.response.use(undefined, (error: AxiosError) => {
     clearStorage('token');
     window.location.href = '/';
   }
-  const message =
-    (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+  const message = (error.response && error.response.data) || error.message || error.toString();
   notificationController.error(message);
 });
 

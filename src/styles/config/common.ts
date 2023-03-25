@@ -4,6 +4,7 @@ const common: ThemeCommon = {
   colors: {
     transparent: 'transparent',
     white: '#ffffff',
+    black: '#000000',
     logout: '#a9a9a9',
     logoutHover: '#808080',
     login: '#007bff',

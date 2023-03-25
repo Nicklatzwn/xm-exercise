@@ -14,6 +14,16 @@ export const Form = styled.form`
 
   .form-group {
     margin-bottom: 20px;
+    position: relative;
+    .show__password {
+      display: flex;
+      position: absolute;
+      top: 38px;
+      right: 10px;
+      svg {
+        color: ${({ theme }) => theme.colors.black};
+      }
+    }
   }
 
   label {
@@ -36,7 +46,8 @@ export const Form = styled.form`
     border: 1px solid;
     border-color: ${({ theme }) => theme.colors.borderColor};
     border-radius: 4px;
-    padding: 8px;
+    padding: 10px 30px 10px 10px;
+    position: relative;
     &:focus {
       outline: none !important;
       border: 1px solid ${({ theme }) => theme.colors.inputFocus};
@@ -59,7 +70,7 @@ export const Form = styled.form`
     background-color: ${({ theme }) => theme.colors.login};
     border: none;
     border-radius: 4px;
-    padding: 8px 20px;
+    padding: 10px 20px;
     margin-top: 20px;
     color: ${({ theme }) => theme.colors.white};
     width: 100%;
