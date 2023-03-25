@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { BeatLoader } from 'react-spinners';
 import { Form } from './styled';
 
 type LoginFormInputs = {
@@ -49,10 +50,9 @@ const LoginForm: React.FC<{ onSubmit: (data: LoginFormInputs) => void; isLoading
         </label>
         <input className="form-check-input" type="checkbox" id="rememberMe" {...register('rememberMe')} />
       </div>
-      <button type="submit" className="btn btn-primary">
-        Submit
+      <button disabled={isLoading} type="submit" className="btn btn-primary">
+        {isLoading ? <BeatLoader className="beat__loader" size={10} /> : <span>Submit</span>}
       </button>
-      {isLoading && <span>Loading...</span>}
     </Form>
   );
 };

@@ -5,10 +5,13 @@ const light: Theme = {
   colors: {
     ...common.colors,
     background: '#f8fbff',
-    headerBorder: '#ffffff',
+    headerBorder: '#f1f1f1',
     headerBg: '#ffffff',
-    loginCardBg: '#ffffff',
+    CardBg: '#ffffff',
     textColor: '##13264d',
+  },
+  sizes: {
+    ...common.sizes,
   },
 };
 

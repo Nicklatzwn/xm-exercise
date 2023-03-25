@@ -9,7 +9,8 @@
       "types/*": ["./types/*"],
       "storage/*": ["./storage/*"],
       "interfaces/*": ["./interfaces/*"],
-      "controllers/*": ["./controllers/*"]
+      "controllers/*": ["./controllers/*"],
+      "router/*": ["./router/*"]
     },
     "target": "es5",
     "lib": [

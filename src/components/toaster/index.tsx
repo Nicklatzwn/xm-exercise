@@ -1,8 +1,8 @@
 import React from 'react';
-import { Notify } from './styled';
+import { Toaster } from 'react-hot-toast';
 
 const NotificationToaster: React.FC = () => {
-  return <Notify reverseOrder={false} />;
+  return <Toaster containerClassName="toaster-container" reverseOrder={false} />;
 };
 
 export default NotificationToaster;

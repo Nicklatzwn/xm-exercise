@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 
 export const Form = styled.form`
-  background-color: ${({ theme }) => theme.colors.loginCardBg};
+  background-color: ${({ theme }) => theme.colors.CardBg};
   color: ${({ theme }) => theme.colors.textColor};
   border-radius: 8px;
   padding: 30px 60px;
@@ -21,14 +21,20 @@ export const Form = styled.form`
     margin-bottom: 5px;
     :after {
       content: ' *';
-      color: red;
+      color: ${({ theme }) => theme.colors.errorText};
+    }
+    &.form-check-label {
+      :after {
+        content: none;
+      }
     }
   }
 
   .form-control {
     width: 100%;
     height: 40px;
-    border: 1px solid #ced4da;
+    border: 1px solid;
+    border-color: ${({ theme }) => theme.colors.borderColor};
     border-radius: 4px;
     padding: 8px;
     &:focus {
@@ -39,7 +45,7 @@ export const Form = styled.form`
   }
 
   .form-control-error {
-    color: red;
+    color: ${({ theme }) => theme.colors.errorText};
     font-size: 0.8em;
     margin: 0;
   }
@@ -57,9 +63,14 @@ export const Form = styled.form`
     margin-top: 20px;
     color: ${({ theme }) => theme.colors.white};
     width: 100%;
-    &:hover {
+    &:not([disabled]):hover {
       background-color: ${({ theme }) => theme.colors.loginHover};
       cursor: pointer;
+    }
+    .beat__loader {
+      span {
+        background-color: ${({ theme }) => theme.colors.white} !important;
+      }
     }
   }
 `;

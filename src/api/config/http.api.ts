@@ -15,14 +15,14 @@ httpApi.interceptors.request.use((config) => {
 httpApi.interceptors.response.use(undefined, (error: AxiosError) => {
   if (error.response?.status === 401 && error.config) {
     clearStorage('token');
-    window.history.pushState({}, '/');
+    window.location.href = '/';
   }
   const message =
     (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
   notificationController.error(message);
 });
 
-export const setSession = (access_token: string | null): void => {
+export const setAxiosSession = (access_token: string | null): void => {
   access_token
     ? (httpApi.defaults.headers.common.Authorization = `Bearer ${access_token}`)
     : delete httpApi.defaults.headers.common.Authorization;

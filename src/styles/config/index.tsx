@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { getStorage, setStorage } from 'storage/index';
 import { ThemeProvider } from 'styled-components/macro';
+import { WithChildrenProps } from 'types/generalTypes';
 
 import { dark } from './dark';
 import { light } from './light';
@@ -23,7 +24,7 @@ export const useTheme = () => {
   return { theme: theme === 'light' ? light : dark, toggle, themeName: theme };
 };
 
-export const StyledThemeProvider: React.FC = ({ children }) => {
+export const StyledThemeProvider: React.FC<WithChildrenProps> = ({ children }) => {
   const [theme, setTheme] = React.useState<string>(getStorage('theme') || 'light');
   const toggle = React.useCallback(() => setTheme((theme) => (theme === 'light' ? 'dark' : 'light')), []);
   const values = React.useMemo(

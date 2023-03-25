@@ -7,8 +7,11 @@ const dark: Theme = {
     background: '#1e2142',
     headerBorder: '#FFFFFF',
     headerBg: '#1e2142',
-    loginCardBg: '#25284B',
+    CardBg: '#25284B',
     textColor: '#ffffff',
+  },
+  sizes: {
+    ...common.sizes,
   },
 };
 

@@ -1,9 +1,10 @@
 import { WithChildrenProps } from 'types/generalTypes';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BASIC_PATH, LOGIN_PATH } from './AppRouter';
-import { setSession } from 'api/config/http.api';
-import { getStorage, setStorage } from 'storage/index';
+import { setAxiosSession } from 'api/config/http.api';
+import { clearStorage, getStorage, setStorage } from 'storage/index';
+import { isEmpty } from 'lodash';
 import { notificationController } from 'controllers/notificationController';
 
 interface AuthContextType {
@@ -30,28 +31,26 @@ export const AuthProvider: React.FC<WithChildrenProps> = ({ children }) => {
   const [token, setToken] = React.useState<string>(getStorage('token'));
   const navigate = useNavigate();
 
-  const handleLogin = React.useCallback(
-    (token: string, local: boolean) => {
-      setToken(token);
-      setStorage('token', token, local);
-      setSession(token);
-      navigate(BASIC_PATH);
-      notificationController.success('Welcome!');
-    },
-    [navigate],
-  );
-  const handleLogout = React.useCallback(() => {
+  const handleLogin = (token: string, local: boolean) => {
+    setToken(token);
+    setStorage('token', token, local);
+    navigate(BASIC_PATH);
+    notificationController.success('Welcome!');
+  };
+  const handleLogout = () => {
     setToken('');
+    clearStorage('token');
     navigate(LOGIN_PATH);
-  }, [navigate]);
-  const values = React.useMemo(
-    () => ({
-      token,
-      handleLogin,
-      handleLogout,
-    }),
-    [handleLogin, handleLogout, token],
-  );
+  };
+  const values = {
+    token,
+    handleLogin,
+    handleLogout,
+  };
+
+  useEffect(() => {
+    if (!isEmpty(token)) setAxiosSession(token);
+  }, [token]);
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };

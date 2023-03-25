@@ -1,13 +1,12 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { isEmpty } from 'lodash';
+import { Navigate, Outlet } from 'react-router-dom';
 import { LOGIN_PATH } from './AppRouter';
 import { useAuth } from './AuthProvider';
 
-export const ProtectedLayout: React.FC = () => {
+export const ProtectedLayout: React.FC<{ redirectPath?: string }> = ({ redirectPath = LOGIN_PATH }) => {
   const { token } = useAuth();
-  if (isEmpty(token)) {
-    return <Navigate to={LOGIN_PATH} replace />;
+  if (!token) {
+    return <Navigate to={redirectPath} replace />;
   }
-  return null;
+  return <Outlet />;
 };
